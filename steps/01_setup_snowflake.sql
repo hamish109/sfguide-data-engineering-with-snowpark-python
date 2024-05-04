@@ -18,8 +18,12 @@ Last Updated: 1/1/2023
 -- ----------------------------------------------------------------------------
 USE ROLE ACCOUNTADMIN;
 
+select CURRENT_USER();
+
+
 -- Roles
 SET MY_USER = CURRENT_USER();
+
 CREATE OR REPLACE ROLE HOL_ROLE;
 GRANT ROLE HOL_ROLE TO ROLE SYSADMIN;
 GRANT ROLE HOL_ROLE TO USER IDENTIFIER($MY_USER);
@@ -60,6 +64,8 @@ CREATE OR REPLACE FILE FORMAT PARQUET_FORMAT
 CREATE OR REPLACE STAGE FROSTBYTE_RAW_STAGE
     URL = 's3://sfquickstarts/data-engineering-with-snowpark-python/'
 ;
+
+list @FROSTBYTE_RAW_STAGE;
 
 -- ANALYTICS objects
 USE SCHEMA ANALYTICS;
